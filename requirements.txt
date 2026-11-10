@@ -1,0 +1,20 @@
+# Interface Gráfica
+customtkinter
+httpx
+
+# Servidor e API
+fastapi
+uvicorn
+
+# Banco de Dados e Persistência
+sqlalchemy
+psycopg2-binary
+alembic
+
+# Segurança e Autenticação
+python-dotenv
+bcrypt
+pyjwt
+
+# Testes
+pytest
