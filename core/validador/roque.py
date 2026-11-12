@@ -1,0 +1,9 @@
+
+def can_castles(tabuleiro, rei):
+    # DECIDIR SE PODE FAZER O ROQUE
+        # NAO PODE TER NENHUMA PECA ENTRE A TORRE E O REI | COLUNA DO REI
+        # TEM QUE RETORNAR SE PODE FAZER ROQUEI LONGO, ROQUE CURTO OU OS DOIS
+
+            # ROQUE = { ROQUE_LONGO : 0, ROQUE_CURTO : 1, AMBOS : 2 }
+
+    pass
