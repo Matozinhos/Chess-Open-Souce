@@ -1,12 +1,12 @@
 from .casa import Casa
-from .pecas import Torre, Cavalo, Bispo, Rainha, Rei, Peao
+from .pecas import Torre, Cavalo, Bispo, Rainha, Rei, Peao, Peca
 
 class Tabuleiro:
     def __init__(self):
         self.casas = [[Casa(linha, coluna) for coluna in range(8)] for linha in range(8)]
         self.MOVIMENTOS = [] # PAR = branco, IMPAR = preto
 
-        self.PECAS_PRETAS = []
+        self.PECAS_PRETAS = [] # [0] : Torre | [1] : Cavalo | [2] : Bispo | [3] : Rainha | [4] : Rei | [5] : Bispo | [6] : Cavalo | [7] : Torre
         self.PECAS_BRANCAS = []
 
 
@@ -36,17 +36,33 @@ class Tabuleiro:
 
     def mover_peca(self, linha_origem: int, coluna_origem: int, linha_destino: int, coluna_destino: int):
 
-        peca = self.get_peca(linha_origem, coluna_origem)
+        peca : Peca = self.get_peca(linha_origem, coluna_origem)
         peca_destino = self.get_peca(linha_destino, coluna_destino)
 
         if peca:
             self.MOVIMENTOS.append(((peca, linha_origem, coluna_origem), (peca_destino, linha_destino, coluna_destino)))
+            # Aqui caso exista uma peca desitino, ela sera retornada indicando que ela foi comida
 
+            peca.mover_para(linha_destino, coluna_destino)
             self.set_peca(linha_destino, coluna_destino, peca)
             self.remover_peca(linha_origem, coluna_origem)
 
         else: 
             raise ValueError("Não há peça na posição de origem.")
+
+    def test_mover_peca(self, linha_origem: int, coluna_origem: int, linha_destino: int, coluna_destino: int):
+    
+            peca : Peca = self.get_peca(linha_origem, coluna_origem)
+    
+            if peca:
+                # Aqui no test nao armazena movimentos pois é um test, o movimento sera voltado ao inicio
+            
+    
+                self.set_peca(linha_destino, coluna_destino, peca)
+                self.remover_peca(linha_origem, coluna_origem)
+    
+            else: 
+                raise ValueError("Não há peça na posição de origem.")
 
     def montar_posicao_inicial(self):
         from .pecas import Peao, Torre, Cavalo, Bispo, Rainha, Rei

@@ -1,5 +1,5 @@
 
-def is_em_xeque(self, tabuleiro, cor) -> str | None:
+def is_em_xeque(tabuleiro, cor) -> str | None:
 
         # So é possivel um rei estar em xeque por vez, então podemos retornar a (rei, peca ameaçando) 
         # em xeque ou None se nenhum estiver em xeque.
@@ -22,5 +22,7 @@ def is_em_xeque(self, tabuleiro, cor) -> str | None:
                 movimentos = peca.movimentos_validos(tabuleiro)
                 if posicao_rei_branco in movimentos:
                     xeque.append(peca)
+
+        if len(xeque) == 1: xeque = None
 
         return xeque

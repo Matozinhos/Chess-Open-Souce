@@ -10,6 +10,7 @@ class Validador:
             raise ValueError(f"Movimento inválido para a peça {peca} para ({nova_linha}, {nova_coluna}).")
 
         # Caso a peca esteja cravada.
+            # Se a peca estiver cravada ela so pode andar pelas casas que ameacam xeque
 
             
     @staticmethod

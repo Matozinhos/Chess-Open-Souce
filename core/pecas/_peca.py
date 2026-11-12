@@ -6,7 +6,7 @@ class Peca(ABC):
         self.cor = cor # 'branco' ou 'preto'
         self.linha = linha
         self.coluna = coluna
-        self.MOVIMENTOS = []
+        self.moveu = False
 
     @abstractmethod
     def movimentos_possiveis(self, tabuleiro):
@@ -15,7 +15,8 @@ class Peca(ABC):
     def mover_para(self, nova_linha: int, nova_coluna: int):
         self.linha = nova_linha
         self.coluna = nova_coluna
-        self.MOVIMENTOS.append((nova_linha, nova_coluna))
+        if not self.moveu: 
+            self.moveu = True
 
     def posicao_atual(self):
         return (self.linha, self.coluna)
