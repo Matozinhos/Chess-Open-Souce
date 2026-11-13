@@ -9,7 +9,6 @@ class Tabuleiro:
         self.PECAS_PRETAS = [] # [0] : Torre | [1] : Cavalo | [2] : Bispo | [3] : Rainha | [4] : Rei | [5] : Bispo | [6] : Cavalo | [7] : Torre
         self.PECAS_BRANCAS = []
 
-
     @staticmethod
     def is_dentro_dos_limites(linha: int, coluna: int) -> bool:
         return 0 <= linha < 8 and 0 <= coluna < 8
@@ -20,15 +19,6 @@ class Tabuleiro:
         else: 
             raise IndexError("Linha fora dos limites do tabuleiro.")
 
-    def get_peca(self, linha: int, coluna: int):
-        casa = self[linha][coluna]
-        return casa.peca if casa else None
-
-    def set_peca(self, linha: int, coluna: int, peca):
-        casa = self[linha][coluna]
-        if casa:
-            casa.peca = peca
-
     def remover_peca(self, linha: int, coluna: int):
         casa = self[linha][coluna]
         if casa:
@@ -36,15 +26,15 @@ class Tabuleiro:
 
     def mover_peca(self, linha_origem: int, coluna_origem: int, linha_destino: int, coluna_destino: int):
 
-        peca : Peca = self.get_peca(linha_origem, coluna_origem)
-        peca_destino = self.get_peca(linha_destino, coluna_destino)
+        peca : Peca = self[linha_origem][coluna_origem].peca
+        peca_destino = self[linha_destino][coluna_destino].peca
 
         if peca:
             self.MOVIMENTOS.append(((peca, linha_origem, coluna_origem), (peca_destino, linha_destino, coluna_destino)))
             # Aqui caso exista uma peca desitino, ela sera retornada indicando que ela foi comida
 
             peca.mover_para(linha_destino, coluna_destino)
-            self.set_peca(linha_destino, coluna_destino, peca)
+            self[linha_destino][coluna_destino].peca = peca
             self.remover_peca(linha_origem, coluna_origem)
 
         else: 
@@ -57,8 +47,7 @@ class Tabuleiro:
             if peca:
                 # Aqui no test nao armazena movimentos pois é um test, o movimento sera voltado ao inicio
             
-    
-                self.set_peca(linha_destino, coluna_destino, peca)
+                self[linha_destino][coluna_destino].peca = peca
                 self.remover_peca(linha_origem, coluna_origem)
     
             else: 
@@ -68,8 +57,8 @@ class Tabuleiro:
         from .pecas import Peao, Torre, Cavalo, Bispo, Rainha, Rei
 
         for coluna in range(8):
-            self.set_peca(1, coluna, Peao("preto", 1, coluna))
-            self.set_peca(6, coluna, Peao("branco", 6, coluna))
+            self[1][coluna].peca = Peao("preto",1,coluna)
+            self[6][coluna].peca = Peao("branco", 6, coluna)
 
         pecas_pretas = [
             Torre("preto", 0, 0), Cavalo("preto", 0, 1), Bispo("preto", 0, 2),
@@ -85,11 +74,11 @@ class Tabuleiro:
         ]
         self.PECAS_BRANCAS = pecas_brancas
 
-        for peca in self.PECAS_PRETAS:
-            self.set_peca(peca.linha, peca.coluna, peca)
+        for peca in pecas_pretas:
+            self[peca.linha][peca.coluna].peca = peca
 
-        for peca in self.PECAS_BRANCAS:
-            self.set_peca(peca.linha, peca.coluna, peca)
+        for peca in pecas_brancas:
+            self[peca.linha][peca.coluna].peca = peca
 
     def __str__(self):
         tabuleiro_str = ""

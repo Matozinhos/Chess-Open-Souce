@@ -13,13 +13,13 @@ def is_em_xeque(tabuleiro, cor) -> str | None:
         if cor == 'preto':
             xeque = [rei_preto]
             for peca in tabuleiro.PECAS_BRANCAS:
-                movimentos = peca.movimentos_validos(tabuleiro)
+                movimentos = peca.movimentos_possiveis(tabuleiro)
                 if posicao_rei_preto in movimentos:
                     xeque.append(peca)
         else:
             xeque = [rei_branco]
             for peca in tabuleiro.PECAS_PRETAS:
-                movimentos = peca.movimentos_validos(tabuleiro)
+                movimentos = peca.movimentos_possiveis(tabuleiro)
                 if posicao_rei_branco in movimentos:
                     xeque.append(peca)
 

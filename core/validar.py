@@ -27,7 +27,7 @@ class Validador:
             raise ValueError("Movimento en passant inválido: fora do tabuleiro.")
 
         coluna_alvo = peao.coluna
-        peca_alvo = tabuleiro[linha_alvo][coluna_alvo]
+        peca_alvo = tabuleiro[linha_alvo][coluna_alvo].peca
 
         if peca_alvo is None or not isinstance(peca_alvo, Peao) or peca_alvo.cor == peao.cor:
             raise ValueError("Movimento en passant inválido: não há um peão adversário para capturar.")

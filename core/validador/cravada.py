@@ -6,7 +6,6 @@ from .xeque import is_em_xeque
 
 def is_cravada(tabuleiro : Tabuleiro, peca : Peca, destino_linha, destino_coluna) -> bool:
 
-    origem_linha, origem_coluna = peca.linha, peca.coluna
     peca_destino = tabuleiro[destino_linha][destino_coluna]
 
     tabuleiro.test_mover_peca(peca.linha, peca.coluna, destino_linha, destino_coluna)
@@ -14,6 +13,7 @@ def is_cravada(tabuleiro : Tabuleiro, peca : Peca, destino_linha, destino_coluna
     xeque = is_em_xeque(tabuleiro, peca.cor)
     
     tabuleiro.test_mover_peca( destino_linha, destino_coluna, peca.linha, peca.coluna)
+    tabuleiro[destino_linha][destino_coluna].peca = peca_destino
 
     if xeque != None:
         xeque = linha_de_cravada(xeque, tabuleiro)
