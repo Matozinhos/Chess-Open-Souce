@@ -1,4 +1,4 @@
-from .repositorios import FilaRepo, JogadorRepo, PartidaRepo
+from .conexao import criar_tabelas, criar_sessao
+from .modelos import Jogador, Partida, Lance, participacoes
 
-from .conexao import Conexao
-from .modelos import Modelos
+__all__ = ["criar_tabelas", "criar_sessao", "Jogador", "Partida", "Lance", "participacoes"]

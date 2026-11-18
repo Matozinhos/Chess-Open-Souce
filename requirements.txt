@@ -1,20 +1,5 @@
-# Interface Gráfica
-customtkinter
-httpx
-
-# Servidor e API
-fastapi
-uvicorn
-
-# Banco de Dados e Persistência
-sqlalchemy
-psycopg2-binary
-alembic
-
-# Segurança e Autenticação
-python-dotenv
-bcrypt
-pyjwt
-
-# Testes
-pytest
+# Jogo local: interface Xandrez, regras completas e SQLite/SQLAlchemy.
+SQLAlchemy>=2.0,<3.0
+customtkinter>=5.2,<6.0
+Pillow>=10.0,<13.0
+pytest>=8.0,<10.0

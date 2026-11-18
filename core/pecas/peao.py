@@ -1,30 +1,29 @@
 from ._peca import Peca
 
+
 class Peao(Peca):
-    def __init__(self, cor: str, linha: int, coluna: int):
-        super().__init__(cor, linha, coluna)
+    letra = 'p'
 
     def movimentos_possiveis(self, tabuleiro):
+        direcao = -1 if self.cor == 'branco' else 1
+        inicial = 6 if self.cor == 'branco' else 1
+        linha = self.linha + direcao
         movimentos = []
-        direcao = 1 if self.cor == 'branco' else -1
-        nova_linha = self.linha + direcao
 
-        # Movimento para frente
-        if 0 <= nova_linha < 8 and tabuleiro[nova_linha][self.coluna] is None:
-            movimentos.append((nova_linha, self.coluna))
+        if not 0 <= linha < 8:
+            return movimentos
 
-            # Movimento inicial
-            if (self.cor == 'branco' and self.linha == 1) or (self.cor == 'preto' and self.linha == 6):
-                nova_linha_dois_passos = self.linha + 2 * direcao
-                if tabuleiro[nova_linha_dois_passos][self.coluna] is None:
-                    movimentos.append((nova_linha_dois_passos, self.coluna))
+        if tabuleiro.get_peca(linha, self.coluna) is None:
+            movimentos.append((linha, self.coluna))
+            dupla = linha + direcao
+            if self.linha == inicial and tabuleiro.get_peca(dupla, self.coluna) is None:
+                movimentos.append((dupla, self.coluna))
 
-        # Captura diagonal
-        for delta_coluna in [-1, 1]:
-            nova_coluna = self.coluna + delta_coluna
-            if 0 <= nova_coluna < 8 and 0 <= nova_linha < 8:
-                peca_alvo = tabuleiro[nova_linha][nova_coluna]
-                if peca_alvo is not None and peca_alvo.cor != self.cor:
-                    movimentos.append((nova_linha, nova_coluna))
+        for coluna in (self.coluna - 1, self.coluna + 1):
+            if not 0 <= coluna < 8:
+                continue
+            alvo = tabuleiro.get_peca(linha, coluna)
+            if alvo is not None and alvo.cor != self.cor and alvo.letra != 'k':
+                movimentos.append((linha, coluna))
 
         return movimentos

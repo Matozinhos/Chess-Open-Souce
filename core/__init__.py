@@ -1,15 +1,38 @@
-from .pecas import Peao
-from .pecas import Torre
-from .pecas import Cavalo
-from .pecas import Bispo
-from .pecas import Rainha
-from .pecas import Rei
+"""API pública do motor de xadrez."""
 
-from .pecas import Peca
+from .casa import Casa
+from .estado import EstadoPartida, MovimentoIlegal, PartidaEncerrada
+from .jogo import Jogo
+from .movimento import Movimento, RegistroMovimento
+from .tabuleiro import FEN_INICIAL, Tabuleiro
+from .validar import Validador
 
-from .tabuleiro import Tabuleiro
-# from .jogo import Jogo
-# from .casa import Casa
-# from .validar import Validar
+from .pecas import (
+    Peca,
+    Peao,
+    Torre,
+    Cavalo,
+    Bispo,
+    Rainha,
+    Rei,
+)
 
-
+__all__ = [
+    "Casa",
+    "EstadoPartida",
+    "MovimentoIlegal",
+    "PartidaEncerrada",
+    "Jogo",
+    "Movimento",
+    "RegistroMovimento",
+    "FEN_INICIAL",
+    "Tabuleiro",
+    "Validador",
+    "Peca",
+    "Peao",
+    "Torre",
+    "Cavalo",
+    "Bispo",
+    "Rainha",
+    "Rei",
+]
