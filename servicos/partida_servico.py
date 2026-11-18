@@ -1,4 +1,3 @@
-"""Conecta o motor de xadrez ao banco, sem colocar SQL no core."""
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 

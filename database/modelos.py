@@ -22,7 +22,7 @@ class Base(DeclarativeBase):
     pass
 
 
-# N:N: a cor do jogador pertence à participação, não ao cadastro.
+# N:N
 participacoes = Table(
     "participacoes",
     Base.metadata,
@@ -66,7 +66,6 @@ class Partida(Base):
     vencedor_cor: Mapped[str | None] = mapped_column(String(6))
     motivo: Mapped[str | None] = mapped_column(String(80))
     criada_em: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=agora)
-    # Contador de meios-lances: 1.e4 e 1...e5 contam como dois lances.
     numero_lances: Mapped[int] = mapped_column(Integer, nullable=False, default=0, server_default="0")
     atualizada_em: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=agora)
     encerrada_em: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
@@ -77,7 +76,7 @@ class Partida(Base):
         viewonly=True,
     )
 
-    # 1:N: uma partida possui vários lances.
+    # 1:N
     lances: Mapped[list["Lance"]] = relationship(
         back_populates="partida",
         order_by="Lance.numero",

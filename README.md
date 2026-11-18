@@ -32,3 +32,5 @@ Chess-Open-Source-Xandrez-T3/
     Arthur Soares Pezzini Moreira
 
 # Links 
+
+Video Apresentacao: https://drive.google.com/file/d/1IcZLfINglzz_KkE0tWdNODPyItmOgyii/view?usp=sharing
